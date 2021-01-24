@@ -21,30 +21,17 @@ window.addEventListener('load', () => {
     }
 });
 
-function resolveAfterTwoseconds() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('Resolved');
-        }, 1000);
-    });
-}
-
 //getting weather forecast data
-async function asyncCall() {
-    // console.log("Calling...");
-    const result = await resolveAfterTwoseconds();
-    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}&days=7`)
+
+setTimeout(() => {
+   fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}&days=7`)
     .then(respone => respone.json())
     .then(data => {
         console.log(data);
 
         //Display elements and create elements needed
         weatherTempHeader.innerText = `${data.current.temp_f} F`;
-        
+});         
+}, 1000);
 
-    });
-}
 
-asyncCall();
-
-//const result = await resolveAfter2Seconds();
